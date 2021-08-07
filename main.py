@@ -30,7 +30,7 @@ while True:
         # drawing rectangle around detected faces
         for (x, y, width, height) in face_coordinates:
             if not args.circle:
-                cv2.rectangle(frame, (x, y), (x + width, y + height), (0, 0, 225), 4)
+                cv2.rectangle(frame, pt1=(x, y), pt2=(x + width, y + height), color=(0, 0, 225), thickness=4)
             else:
                 cv2.circle(frame, center=(x + width // 2, y + height // 2), radius=int(height // 1.8), color=(0, 0, 225), thickness=4)
 
