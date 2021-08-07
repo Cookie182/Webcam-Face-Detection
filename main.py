@@ -1,6 +1,11 @@
 import cv2
 import sys
 import os
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--circle', help='drawing circle around face (default shape is rectange)', action='store_true')
+args = parser.parse_args()
 
 sys.path.append(os.path.join(*os.path.abspath(__file__).split("\\")[:-1]))
 
@@ -24,7 +29,10 @@ while True:
 
         # drawing rectangle around detected faces
         for (x, y, width, height) in face_coordinates:
-            cv2.rectangle(frame, (x, y), (x + width, y + height), (0, 0, 225), 4)
+            if not args.circle:
+                cv2.rectangle(frame, (x, y), (x + width, y + height), (0, 0, 225), 4)
+            else:
+                cv2.circle(frame, center=(x + width // 2, y + height // 2), radius=int(height // 1.8), color=(0, 0, 225), thickness=4)
 
         # Viewing the Video Feed
         cv2.imshow("Face detection", frame)
