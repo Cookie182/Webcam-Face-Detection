@@ -22,7 +22,9 @@ while True:
         grayscaled_image = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
         face_coordinates = face_detector.detectMultiScale(grayscaled_image,
-                                                          scaleFactor=1.2, minNeighbors=2, minSize=(60, 60),
+                                                          scaleFactor=1.2,
+                                                          minNeighbors=2,
+                                                          minSize=(60, 60),
                                                           flags=cv2.CASCADE_SCALE_IMAGE)
 
         # drawing rectangle around detected faces
